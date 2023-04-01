@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="326138f7-57cd-4721-a9bf-ea52905c6b1f" name="Changes" comment="Corrected collision, Corrected some booster texture errors, Made level 8, should add boosters + 4 side colliders to the creator soon">
-      <change afterPath="$PROJECT_DIR$/cointext.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/colliderectborders.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/colliderectcenter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/platformtopleft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/platformtopmid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/platformtopright.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/player.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recttexture.png" afterDir="false" />
+    <list default="true" id="326138f7-57cd-4721-a9bf-ea52905c6b1f" name="Changes" comment="Fall platform texture, player remade, working on texture for collision rectangle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/A_Temporary_Name.py" beforeDir="false" afterPath="$PROJECT_DIR$/A_Temporary_Name.py" afterDir="false" />
     </list>
@@ -55,16 +47,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/storm/Desktop/no grav movement (1) (1) (2).py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/storm/Desktop/no grav movement (1) (1) (2).py&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.A_Temporary_Name">
     <configuration type="PythonConfigurationType" factoryName="Python">
       <module name="Desktop" />
@@ -213,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680225138102</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fall platform texture, player remade, working on texture for collision rectangle">
+      <created>1680259578269</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680259578269</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -221,7 +220,8 @@
     <MESSAGE value="Starting" />
     <MESSAGE value="Finished level 7, need to find way to not workaround for the 4-sided collision (currently have boosters under 4-sided colliders)" />
     <MESSAGE value="Corrected collision, Corrected some booster texture errors, Made level 8, should add boosters + 4 side colliders to the creator soon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected collision, Corrected some booster texture errors, Made level 8, should add boosters + 4 side colliders to the creator soon" />
+    <MESSAGE value="Fall platform texture, player remade, working on texture for collision rectangle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fall platform texture, player remade, working on texture for collision rectangle" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
