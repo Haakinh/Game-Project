@@ -65,6 +65,7 @@ fallplatmain = pygame.image.load("platformtopmid.png")
 playerimg = pygame.image.load("player.png")
 collideborderimg = pygame.image.load("colliderectborders.png")
 scaledcenter = pygame.image.load("colliderectcenter.png")
+coinimg = pygame.image.load("cointext.png")
 arrowrect = pygame.Rect(0, 0, 20, 80)
 leftboosters = []
 rightboosters = []
@@ -239,10 +240,11 @@ while running:
             dash = 0
             setup = 0
             coins.clear()
-            coins = [pygame.Rect(290, 30, 10, 10), (390, 120, 10, 10), (490, 260, 10, 10), (750, 60, 10, 10),
-                     (750, 70, 10, 10), (760, 70, 10, 10), (760, 60, 10, 10), (760, 150, 10, 10), (750, 150, 10, 10),
-                     (750, 160, 10, 10), (760, 160, 10, 10), (760, 240, 10, 10), (750, 240, 10, 10), (750, 250, 10, 10),
-                     (760, 250, 10, 10)]
+            coins = [pygame.Rect(290, 30, 10, 10), pygame.Rect(390, 120, 10, 10), pygame.Rect(490, 260, 10, 10),
+                     pygame.Rect(750, 60, 10, 10), pygame.Rect(750, 70, 10, 10), pygame.Rect(760, 70, 10, 10),
+                     pygame.Rect(760, 60, 10, 10), pygame.Rect(760, 150, 10, 10), pygame.Rect(750, 150, 10, 10),
+                     pygame.Rect(750, 160, 10, 10), pygame.Rect(760, 160, 10, 10), pygame.Rect(760, 240, 10, 10),
+                     pygame.Rect(750, 240, 10, 10), pygame.Rect(750, 250, 10, 10), pygame.Rect(760, 250, 10, 10)]
         screen.fill(Black)
         rectangles = [pygame.Rect(0, 0, 10, 300), pygame.Rect(0, 0, 1080, 10),
                       pygame.Rect(1070, 0, 10, 300), pygame.Rect(0, 290, 1070, 10),
@@ -272,10 +274,12 @@ while running:
             setup = 0
             screen.fill(Black)
             coins.clear()
-            coins = [pygame.Rect(10, 240, 10, 10), (10, 250, 10, 10), (20, 250, 10, 10), (20, 240, 10, 10),
-                     (330, 130, 10, 10), (330, 120, 10, 10), (340, 120, 10, 10), (340, 130, 10, 10),
-                     (900, 110, 10, 10), (900, 120, 10, 10), (910, 120, 10, 10), (910, 110, 10, 10),
-                     (910, 130, 10, 10), (900, 130, 10, 10), (900, 140, 10, 10), (910, 140, 10, 10)]
+            coins = [pygame.Rect(10, 240, 10, 10), pygame.Rect(10, 250, 10, 10), pygame.Rect(20, 250, 10, 10),
+                     pygame.Rect(20, 240, 10, 10), pygame.Rect(330, 130, 10, 10), pygame.Rect(330, 120, 10, 10),
+                     pygame.Rect(340, 120, 10, 10), pygame.Rect(340, 130, 10, 10), pygame.Rect(900, 110, 10, 10),
+                     pygame.Rect(900, 120, 10, 10), pygame.Rect(910, 120, 10, 10), pygame.Rect(910, 110, 10, 10),
+                     pygame.Rect(910, 130, 10, 10), pygame.Rect(900, 130, 10, 10), pygame.Rect(900, 140, 10, 10),
+                     pygame.Rect(910, 140, 10, 10)]
         rectangles = [pygame.Rect(0, 0, 10, 300), pygame.Rect(0, 0, 1080, 10),
                       pygame.Rect(1070, 0, 10, 300), pygame.Rect(0, 290, 1070, 10),
                       (60, 0, 40, 130), (0, 170, 100, 30), (50, 240, 50, 20), (170, 130, 60, 170),
@@ -415,7 +419,9 @@ while running:
             coins = []
         rectangles = []
         rectanglestype2 = []
-        colliderects = [pygame.Rect(100, 30, 600, 60), pygame.Rect(260, 160, 80, 80), pygame.Rect(410, 170, 60, 100), pygame.Rect(550, 260, 60, 40)]
+        colliderects = [pygame.Rect(100, 30, 600, 60), pygame.Rect(260, 160, 80, 80), pygame.Rect(410, 170, 60, 100),
+                        pygame.Rect(550, 260, 60, 40), pygame.Rect(100, 190, 50, 60), pygame.Rect(150, 130, 60, 60),
+                        pygame.Rect(150, 250, 60, 40), pygame.Rect(150, 190, 60, 60), pygame.Rect(100, 120, 50, 70)]
         fallplatforms = []
         wallplatforms = []
         killermovers = []
@@ -630,10 +636,16 @@ while running:
             surface = pygame.Surface((colliderect.width, colliderect.height))
             border_rect = pygame.Rect(10, 0, 10, 10)
             bordersurface = pygame.Surface((10, 10))
-            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 0, 10, 10))
+            if pygame.Rect.colliderect(pygame.Rect(colliderect.top, colliderect.y, 20, 20), colliderect):
+                bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 10, 10, 10))
+            else:
+                bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 0, 10, 10))
             screen.blit(bordersurface, (colliderect.width + x, colliderect.y))
             #bottom side
-            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 20, 10, 10))
+            if pygame.Rect.colliderect(pygame.Rect(colliderect.x, colliderect.top + colliderect.height, 20, 20), colliderect):
+                bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 10, 10, 10))
+            else:
+                bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 20, 10, 10))
             screen.blit(bordersurface, (colliderect.width + x, colliderect.y + colliderect.height - 10))
         for y in range(colliderect.top + 10, colliderect.bottom - 10, 10):
             # Left side
@@ -674,10 +686,10 @@ while running:
                     yvel = -yvel + windvel
                 else:
                     yvel = 0
-                if pygame.Rect(playerx, playery, 20, 20).bottom > colliderect.top + 5 and playerx > colliderect.left + 20 and playerx < colliderect.right - 20:
+                if pygame.Rect(playerx, playery, 20, 20).bottom > colliderect.top + 5 and playerx > colliderect.left - 10 and playerx < colliderect.right + 10:
                     playery -= 5
-                if pygame.Rect(playerx, playery, 20, 20).bottom > colliderect.top and playerx > colliderect.left + 20 and playerx < colliderect.right - 20:
-                    playery -= windvel
+                elif pygame.Rect(playerx, playery, 20, 20).bottom > colliderect.top + 3 and playerx > colliderect.left - 10 and playerx < colliderect.right + 10:
+                    playery -= windvel - 1
                 if keys[pygame.K_s]:
                     playery -= playermovey
             # bottom side collision
@@ -686,14 +698,14 @@ while running:
                     y2vel = -y2vel - 2
                 else:
                     y2vel = 0
-                if pygame.Rect(playerx, playery, 20, 20).top < colliderect.bottom - 5 and playerx > colliderect.left + 20 and playerx < colliderect.right - 20:
+                if pygame.Rect(playerx, playery, 20, 20).top < colliderect.bottom - 5 and playerx > colliderect.left - 10 and playerx < colliderect.right + 10:
                     playery += 5
-                if pygame.Rect(playerx, playery, 20, 20).top < colliderect.bottom and playerx > colliderect.left + 20 and playerx < colliderect.right - 20:
+                elif pygame.Rect(playerx, playery, 20, 20).top < colliderect.bottom and playerx > colliderect.left - 10 and playerx < colliderect.right + 10:
                     playery += windvel + 1
                 if keys[pygame.K_w]:
                     playery += playermovey
             #left side collision (working)
-            if colliderect.left <= pygame.Rect(playerx, playery, 20, 20).right and colliderect.left >= pygame.Rect(playerx, playery, 20, 20).left and playery + 20 >= colliderect.top and playery - 20 <= colliderect.bottom:
+            if colliderect.left <= pygame.Rect(playerx, playery, 20, 20).right and colliderect.left >= pygame.Rect(playerx, playery, 20, 20).left and playery + 15 >= colliderect.top and playery - 15 <= colliderect.bottom:
                 if xvel > windvel:
                     xvel = -xvel
                 else:
@@ -705,16 +717,14 @@ while running:
                 if keys[pygame.K_d]:
                     playerx -= playermovex
             # right side collision (working)
-            if colliderect.right >= pygame.Rect(playerx, playery, 20, 20).left and colliderect.right - 2 <= pygame.Rect(playerx, playery, 20, 20).right and playery - 5 >= colliderect.top and playery + 5 <= colliderect.bottom:
+            if colliderect.right >= pygame.Rect(playerx, playery, 20, 20).left and colliderect.right <= pygame.Rect(playerx, playery, 20, 20).right and playery + 15 >= colliderect.top and playery - 15 <= colliderect.bottom:
                 if x2vel < 0:
                     x2vel = -x2vel - 2
                 else:
                     x2vel = 0
                 if pygame.Rect(playerx, playery, 20, 20).left < colliderect.right - 5 and playery > colliderect.top - 5 and playery < colliderect.bottom + 5:
                     playerx += 5
-                if pygame.Rect(playerx, playery, 20, 20).left < colliderect.right:
-                    if windvel == 0:
-                        playerx += 1
+                if pygame.Rect(playerx, playery, 20, 20).left < colliderect.right and playery > colliderect.top + 5 and playery < colliderect.bottom - 5:
                     playerx += windvel
                 if keys[pygame.K_a]:
                     playerx += playermovex
@@ -808,7 +818,11 @@ while running:
     for winposition in winpos:
         pygame.draw.rect(screen, Yellow, winposition)
     for coin in coins:
-        pygame.draw.rect(screen, Yellow, pygame.Rect(coin))
+        surface = pygame.Surface((coin.width, coin.height))
+        coin_rect = pygame.Rect(10, 10, 10, 10)
+        coinsurface = pygame.Surface((coin.width, coin.height))
+        coinsurface.blit(coinimg, (0, 0), pygame.Rect(0, 0, 10, 10))
+        screen.blit(coinsurface, (coin.x, coin.y))
         if pygame.Rect.colliderect(pygame.Rect(playerx, playery, 20, 20), coin):
             coinscollected += 1
             print(coins)
