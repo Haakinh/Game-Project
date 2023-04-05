@@ -54,7 +54,7 @@ rect2create = 1
 moverectcreate = 1
 collrectcreate = True
 keys2d = True
-level = 5
+level = 10
 coinscollected = 0
 windvel = 0
 offsetx = 0
@@ -432,7 +432,7 @@ while running:
             screen.fill(Black)
             coins.clear()
             coins = []
-        rectangles = [pygame.Rect(0, 0, 10, 300), pygame.Rect(0, 0, 1080, 10), pygame.Rect(1070, 0, 10, 300), pygame.Rect(0, 290, 1070, 10), (10, 10, 70, 240),
+        rectangles = [pygame.Rect(0, 0, 10, 300), pygame.Rect(0, 0, 1080, 10), pygame.Rect(1070, 0, 10, 300), pygame.Rect(0, 290, 1070, 10), pygame.Rect(10, 10, 70, 240),
                       pygame.Rect(820, 10, 260, 280)]
         rectanglestype2 = []
         colliderects = []
@@ -818,10 +818,10 @@ while running:
             if keys[pygame.K_a]:
                 playerx += playermovex
     for rectangle in rectangles:
-        #pygame.draw.rect(screen, LightGray, pygame.Rect(rectangle))
-        rectsurface = pygame.Surface((1080, 300))
-        rectsurface.blit(rectoverlay, (0, 0), pygame.Rect(rectangle))
-        screen.blit(rectsurface, (rectangle.x, rectangle.y))
+        pygame.draw.rect(screen, LightGray, pygame.Rect(rectangle))
+        #rectsurface = pygame.Surface((1080, 300))
+        #rectsurface.blit(rectoverlay, (0, 0), rectangle)
+        #screen.blit(rectsurface, (rectangle.x, rectangle.y))
         if pygame.Rect.colliderect(pygame.Rect(playerx, playery, 20, 20), rectangle):
             pygame.draw.rect(screen, Black, pygame.Rect((playerx - 60), (playery - 60), 120, 120))
             death += 1
@@ -846,7 +846,7 @@ while running:
             print(coins)
             print(coinscollected)
             coins.remove(coin)
-    if level == 3 or 5:
+    if level == 3 or level == 5:
         if movement1 >= 5:
             increment1 = -0.05 * (0.5 * abs(movement1))
         if movement1 <= -5:
