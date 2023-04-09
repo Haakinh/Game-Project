@@ -54,7 +54,7 @@ rect2create = 1
 moverectcreate = 1
 collrectcreate = True
 keys2d = True
-level = 10
+level = 1
 coinscollected = 0
 windvel = 0
 offsetx = 0
@@ -281,6 +281,7 @@ while running:
             coins.clear()
             coins = [pygame.Rect(220, 200, 10, 10), pygame.Rect(260, 200, 10, 10), pygame.Rect(300, 200, 10, 10), pygame.Rect(340, 200, 10, 10),
                      pygame.Rect(380, 200, 10, 10), pygame.Rect(420, 200, 10, 10), pygame.Rect(460, 200, 10, 10), pygame.Rect(500, 200, 10, 10),]
+        screen.fill(Black)
         rectangles = [pygame.Rect(0, 280, 620, 20), pygame.Rect(0, 0, 620, 130), pygame.Rect(620, 0, 460, 300), ]
         rectanglestype2 = [pygame.Rect(90, 200, 50, 10), pygame.Rect(90, 180, 70, 20), pygame.Rect(90, 210, 70, 20), pygame.Rect(160, 220, 30, 10),
                            pygame.Rect(160, 180, 30, 10), pygame.Rect(100, 160, 110, 20), pygame.Rect(110, 150, 90, 10), pygame.Rect(130, 140, 50, 10),
@@ -299,18 +300,18 @@ while running:
                      pygame.Rect(750, 150, 10, 10), pygame.Rect(750, 160, 10, 10), pygame.Rect(760, 160, 10, 10), pygame.Rect(760, 240, 10, 10),
                      pygame.Rect(750, 240, 10, 10), pygame.Rect(750, 250, 10, 10), pygame.Rect(760, 250, 10, 10)]
         screen.fill(Black)
-        rectangles = [pygame.Rect(0, 50, 190, 40), pygame.Rect(230, 0, 40, 130), pygame.Rect(50, 130, 220, 120), pygame.Rect(0, 290, 270, 80),
-                      pygame.Rect(310, 210, 60, 80), pygame.Rect(310, 100, 60, 80), pygame.Rect(310, 40, 150, 60), pygame.Rect(410, 140, 70, 110),
-                      pygame.Rect(490, 40, 40, 60), pygame.Rect(520, 100, 60, 190), pygame.Rect(530, 40, 50, 60), pygame.Rect(630, 0, 50, 140),
-                      pygame.Rect(630, 180, 50, 110), pygame.Rect(730, 90, 50, 50), pygame.Rect(730, 180, 50, 50), pygame.Rect(680, 0, 100, 50),
-                      pygame.Rect(680, 270, 100, 20), pygame.Rect(780, 110, 100, 90), pygame.Rect(920, 50, 80, 80), pygame.Rect(780, 0, 220, 50),
-                      pygame.Rect(920, 170, 80, 100), pygame.Rect(780, 270, 220, 20), pygame.Rect(850, 250, 70, 20), pygame.Rect(850, 50, 70, 20),
-                      pygame.Rect(1000, 0, 70, 130), pygame.Rect(1000, 170, 70, 120)]
-        rectanglestype2 = [pygame.Rect(270, 60, 40, 120), pygame.Rect(310, 180, 60, 30), pygame.Rect(330, 10, 120, 30), pygame.Rect(630, 140, 50, 40),
+        rectangles = [pygame.Rect(0, 50, 190, 40), pygame.Rect(230, 0, 40, 130), pygame.Rect(50, 130, 220, 120),
+                      pygame.Rect(310, 210, 60, 90), pygame.Rect(310, 100, 60, 80), pygame.Rect(310, 40, 150, 60), pygame.Rect(410, 140, 70, 110),
+                      pygame.Rect(490, 40, 40, 60), pygame.Rect(520, 100, 60, 200), pygame.Rect(530, 40, 50, 60), pygame.Rect(630, 0, 50, 140),
+                      pygame.Rect(630, 180, 50, 120), pygame.Rect(730, 90, 50, 50), pygame.Rect(730, 180, 50, 50), pygame.Rect(680, 0, 100, 50),
+                      pygame.Rect(680, 270, 100, 30), pygame.Rect(780, 110, 100, 90), pygame.Rect(920, 50, 80, 80), pygame.Rect(780, 0, 220, 50),
+                      pygame.Rect(920, 170, 80, 100), pygame.Rect(780, 270, 220, 30), pygame.Rect(850, 250, 70, 20), pygame.Rect(850, 50, 70, 20),
+                      pygame.Rect(1000, 0, 80, 130), pygame.Rect(1000, 170, 80, 130)]
+        rectanglestype2 = [pygame.Rect(270, 60, 40, 120), pygame.Rect(310, 180, 60, 30), pygame.Rect(330, 0, 120, 40), pygame.Rect(630, 140, 50, 40),
                            pygame.Rect(920, 130, 80, 40)]
         killermovers = [pygame.Rect(75, (30 * movement1) + 140, 30, 30), pygame.Rect(115, (30 * movement2) + 140, 30, 30), pygame.Rect(155, (30 * movement3) + 140, 30, 30),
                         pygame.Rect(-50 + (12 * movement1), 210, 30, 30), pygame.Rect(150 + (12 * movement1), 55, 30, 30)]
-        winpos = [pygame.Rect(1000, 130, 70, 40)]
+        winpos = [pygame.Rect(1000, 130, 80, 40)]
     if level == 6:
         if setup == 1:
             radius1 = 60
@@ -403,24 +404,25 @@ while running:
             coins.clear()
             coins = []
         rectangles = [pygame.Rect(0, 0, 10, 300), pygame.Rect(10, 290, 1070, 10), pygame.Rect(1070, 0, 10, 290), pygame.Rect(10, 0, 1060, 10),
-                      pygame.Rect(90, 160, 150, 10), pygame.Rect(90, 120, 80, 40), pygame.Rect(90, 80, 40, 40), pygame.Rect(170, 10, 40, 40),
-                      pygame.Rect(210, 10, 30, 80), pygame.Rect(90, 170, 150, 120), pygame.Rect(240, 180, 20, 110), pygame.Rect(260, 180, 50, 30),
+                      pygame.Rect(80, 160, 160, 10), pygame.Rect(80, 120, 90, 40), pygame.Rect(80, 80, 50, 40), pygame.Rect(170, 10, 40, 40),
+                      pygame.Rect(210, 10, 30, 80), pygame.Rect(80, 170, 160, 120), pygame.Rect(240, 180, 20, 110), pygame.Rect(260, 180, 50, 30),
                       pygame.Rect(310, 60, 10, 120), pygame.Rect(320, 150, 80, 10), pygame.Rect(320, 100, 40, 50), pygame.Rect(360, 10, 40, 20),
-                      pygame.Rect(400, 10, 40, 60), pygame.Rect(440, 10, 20, 180), pygame.Rect(260, 210, 20, 80), pygame.Rect(310, 160, 50, 30),
+                      pygame.Rect(400, 10, 40, 50), pygame.Rect(440, 10, 20, 180), pygame.Rect(260, 210, 20, 80), pygame.Rect(310, 160, 50, 30),
                       pygame.Rect(390, 220, 50, 10), pygame.Rect(440, 190, 20, 40), pygame.Rect(340, 280, 50, 10), pygame.Rect(540, 80, 40, 40),
                       pygame.Rect(540, 120, 80, 40), pygame.Rect(540, 160, 120, 40), pygame.Rect(540, 200, 160, 40), pygame.Rect(540, 240, 210, 20),
                       pygame.Rect(540, 260, 260, 30), pygame.Rect(620, 10, 40, 40), pygame.Rect(660, 10, 40, 80), pygame.Rect(700, 10, 50, 110),
-                      pygame.Rect(750, 10, 50, 140), pygame.Rect(800, 10, 60, 160), pygame.Rect(860, 10, 210, 280)]
+                      pygame.Rect(750, 10, 50, 140), pygame.Rect(800, 10, 60, 160), pygame.Rect(860, 10, 210, 280), pygame.Rect(530, 80, 20, 210)]
         rectanglestype2 = []
-        colliderects = [pygame.Rect(240, 170, 70, 10), pygame.Rect(500, 40, 40, 250)]
-        fallplatforms = [pygame.Rect(240, 170, 70, 10), pygame.Rect(240, 100, 70, 10), pygame.Rect(240, 40, 70, 10), pygame.Rect(280, 270, 60, 20),
-                         pygame.Rect(390, 270, 110, 20), pygame.Rect(50, 40, 40, 10)]
+        colliderects = [pygame.Rect(240, 160, 70, 40), pygame.Rect(500, 40, 40, 260), pygame.Rect(50, 40, 40, 260), pygame.Rect(310, 40, 10, 40),
+                        pygame.Rect(380, 270, 30, 20), pygame.Rect(320, 270, 30, 20)]
+        fallplatforms = [pygame.Rect(240, 40, 70, 10), pygame.Rect(280, 270, 60, 20),
+                         pygame.Rect(390, 270, 110, 20)]
         wallplatforms = []
         killermovers = []
         winpos = [pygame.Rect(800, 270, 60, 20)]
         leftboosters = []
         rightboosters = []
-        upboosters = [pygame.Rect(10, 30, 20, 260), pygame.Rect(460, 35, 40, 220)]
+        upboosters = [pygame.Rect(10, 30, 40, 260), pygame.Rect(460, 35, 40, 220)]
         downboosters = []
     if level == 10:
         if setup == 1:
@@ -632,7 +634,7 @@ while running:
         if x2vel <= 3:
             x2vel = 0
 
-    #schmoovement
+    #Boosters
     if running:
         if level == 9:
             downboostervel = 2.5
