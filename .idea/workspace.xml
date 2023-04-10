@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="326138f7-57cd-4721-a9bf-ea52905c6b1f" name="Changes" comment="Line Count: 914&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine.">
-      <change afterPath="$PROJECT_DIR$/amogus.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A_Temporary_Name.py" beforeDir="false" afterPath="$PROJECT_DIR$/A_Temporary_Name.py" afterDir="false" />
-    </list>
+    <list default="true" id="326138f7-57cd-4721-a9bf-ea52905c6b1f" name="Changes" comment="Line Count: 996&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine. Starting on collision rectangle creator implementation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681003125517</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Line Count: 996&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine. Starting on collision rectangle creator implementation">
+      <created>1681117139696</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681117139696</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -254,7 +257,8 @@
     <MESSAGE value="Line Count: 912 &#10;Collision rectangle completely finished (finally), trying to get inter-rectangle textures to work, got normal rectangle textures (mostly) working, coin texture implemented, tutorialized movement, dashing, goal and coins, changed text wrapping" />
     <MESSAGE value="Line Count: 912 &#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine." />
     <MESSAGE value="Line Count: 914&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine." />
-    <option name="LAST_COMMIT_MESSAGE" value="Line Count: 914&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine." />
+    <MESSAGE value="Line Count: 996&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine. Starting on collision rectangle creator implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Line Count: 996&#10;Abandoned regular rectangle sprites as it had broken almost everything, though collision rectangle sprites are fine. Starting on collision rectangle creator implementation" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
