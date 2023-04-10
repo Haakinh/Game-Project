@@ -23,6 +23,7 @@ dashVel = 20
 cooldown1 = 0
 cooldown2 = 0
 cooldown3 = 0
+cooldown4 = 0
 yvel = 0
 y2vel = 0
 xvel = 0
@@ -54,7 +55,7 @@ rect2create = 1
 moverectcreate = 1
 collrectcreate = True
 keys2d = True
-level = 1
+level = 9
 coinscollected = 0
 windvel = 0
 offsetx = 0
@@ -83,6 +84,7 @@ collrectrectangles = []
 fallplatforms = []
 wallplatforms = []
 cocoins = []
+colliderectscr = []
 coinsreq = 0
 seed = time.time()
 def boostercalc(self, xchange, ychange, fliph, flipv):
@@ -743,7 +745,7 @@ while running:
                 if pygame.Rect(playerx, playery, 20, 20).bottom > colliderect.top + 5 and playerx > colliderect.left - 10 and playerx < colliderect.right + 10:
                     playery -= 5
                 elif pygame.Rect(playerx, playery, 20, 20).bottom > colliderect.top + 3 and playerx > colliderect.left - 10 and playerx < colliderect.right + 10:
-                    playery -= windvel - 1
+                    playery -= windvel
                 if keys[pygame.K_s]:
                     playery -= playermovey
             # bottom side collision
@@ -771,7 +773,7 @@ while running:
                 if keys[pygame.K_d]:
                     playerx -= playermovex
             # right side collision (working)
-            if colliderect.right >= pygame.Rect(playerx, playery, 20, 20).left and colliderect.right <= pygame.Rect(playerx, playery, 20, 20).right and playery + 15 >= colliderect.top and playery - 15 <= colliderect.bottom:
+            elif colliderect.right >= pygame.Rect(playerx, playery, 20, 20).left and colliderect.right <= pygame.Rect(playerx, playery, 20, 20).right and playery + 15 >= colliderect.top and playery - 15 <= colliderect.bottom:
                 if x2vel < 0:
                     x2vel = -x2vel - 2
                 else:
@@ -779,6 +781,99 @@ while running:
                 if pygame.Rect(playerx, playery, 20, 20).left < colliderect.right - 5 and playery > colliderect.top - 5 and playery < colliderect.bottom + 5:
                     playerx += 5
                 if pygame.Rect(playerx, playery, 20, 20).left < colliderect.right and playery > colliderect.top + 5 and playery < colliderect.bottom - 5:
+                    playerx += windvel
+                if keys[pygame.K_a]:
+                    playerx += playermovex
+    for colliderectcr in colliderectscr:
+        colliderectcr.height = int(colliderectcr.height)
+        colliderectcr.y = int(colliderectcr.y)
+        for x in range(colliderectcr.x - colliderectcr.width + 10, colliderectcr.right - colliderectcr.width - 10, 10):
+            #top side
+            surface = pygame.Surface((colliderectcr.width, colliderectcr.height))
+            border_rect = pygame.Rect(10, 0, 10, 10)
+            bordersurface = pygame.Surface((10, 10))
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 0, 10, 10))
+            screen.blit(bordersurface, (colliderectcr.width + x, colliderectcr.y))
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(10, 20, 10, 10))
+            screen.blit(bordersurface, (colliderectcr.width + x, colliderectcr.y + colliderectcr.height - 10))
+        for y in range(colliderectcr.top + 10, colliderectcr.bottom - 10, 10):
+            # Left side
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(0, 10, 10, 10))
+            screen.blit(bordersurface, (colliderectcr.x, y))
+            # Right side
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(20, 10, 10, 10))
+            surface.blit(bordersurface, (colliderectcr.width - 10, 0))
+            screen.blit(bordersurface, (colliderectcr.x + colliderectcr.width - 10, y))
+        #corners
+        if running:
+            #top left corner
+            surface = pygame.Surface((colliderectcr.width, colliderectcr.height))
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(0, 0, 10, 10))
+            screen.blit(bordersurface, (colliderectcr.x, colliderectcr.y))
+            # top right corner
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(20, 0, 10, 10))
+            screen.blit(bordersurface, (colliderectcr.width + colliderectcr.left - 10, colliderectcr.y))
+            # bottom left corner
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(0, 20, 10, 10))
+            screen.blit(bordersurface, (colliderectcr.x, colliderectcr.height + colliderectcr.top - 10))
+            # bottom right corner
+            bordersurface.blit(collideborderimg, (0, 0), pygame.Rect(20, 20, 10, 10))
+            surface.blit(bordersurface, (colliderectcr.x, colliderectcr.y))
+            screen.blit(bordersurface, (colliderectcr.width + colliderectcr.left - 10, colliderectcr.y + colliderectcr.height - 10))
+        #center
+        if running:
+            for y in range(colliderectcr.y + 10, colliderectcr.y + colliderectcr.height - 10, 10):
+                for x in range(colliderectcr.x + 10, colliderectcr.x + colliderectcr.width - 10, 10):
+                    scaledcenter = pygame.transform.scale(scaledcenter, (colliderectcr.width, colliderectcr.height))
+                    bordersurface.blit(scaledcenter, (0, 0))
+                    surface.blit(bordersurface, (colliderectcr.width + 10, colliderectcr.height + 10))
+                    screen.blit(bordersurface, (x, y))
+        if pygame.Rect.colliderect(pygame.Rect(playerx, playery, 20, 20), colliderectcr):
+            # top side collision
+            if colliderectcr.top <= pygame.Rect(playerx, playery, 20, 20).bottom and colliderectcr.top + 4 >= pygame.Rect(playerx, playery, 20, 20).top:
+                if yvel > 0:
+                    yvel = -yvel + windvel
+                else:
+                    yvel = 0
+                if pygame.Rect(playerx, playery, 20, 20).bottom > colliderectcr.top + 5 and playerx > colliderectcr.left - 10 and playerx < colliderectcr.right + 10:
+                    playery -= 5
+                elif pygame.Rect(playerx, playery, 20, 20).bottom > colliderectcr.top + 3 and playerx > colliderectcr.left - 10 and playerx < colliderectcr.right + 10:
+                    playery -= windvel
+                if keys[pygame.K_s]:
+                    playery -= playermovey
+            # bottom side collision
+            elif colliderectcr.bottom >= pygame.Rect(playerx, playery, 20, 20).top and colliderectcr.bottom - 2 <= pygame.Rect(playerx, playery, 20, 20).bottom:
+                if y2vel < windvel:
+                    y2vel = -y2vel - 2
+                else:
+                    y2vel = 0
+                if pygame.Rect(playerx, playery, 20, 20).top < colliderectcr.bottom - 5 and playerx > colliderectcr.left - 10 and playerx < colliderectcr.right + 10:
+                    playery += 5
+                elif pygame.Rect(playerx, playery, 20, 20).top < colliderectcr.bottom and playerx > colliderectcr.left - 10 and playerx < colliderectcr.right + 10:
+                    playery += windvel + 1
+                if keys[pygame.K_w]:
+                    playery += playermovey
+            #left side collision (working)
+            if colliderectcr.left <= pygame.Rect(playerx, playery, 20, 20).right and colliderectcr.left >= pygame.Rect(playerx, playery, 20, 20).left and playery + 15 >= colliderectcr.top and playery - 15 <= colliderectcr.bottom:
+                if xvel > windvel:
+                    xvel = -xvel
+                else:
+                    xvel = 0
+                if pygame.Rect(playerx, playery, 20, 20).right > colliderectcr.left + 5 and playery > colliderectcr.top + 5 and playery < colliderectcr.bottom - 5:
+                    playerx -= 5
+                if pygame.Rect(playerx, playery, 20, 20).right > colliderectcr.left and playery > colliderectcr.top + 5 and playery < colliderectcr.bottom - 5:
+                    playerx -= windvel
+                if keys[pygame.K_d]:
+                    playerx -= playermovex
+            # right side collision (working)
+            elif colliderectcr.right >= pygame.Rect(playerx, playery, 20, 20).left and colliderectcr.right <= pygame.Rect(playerx, playery, 20, 20).right and playery + 15 >= colliderectcr.top and playery - 15 <= colliderectcr.bottom:
+                if x2vel < 0:
+                    x2vel = -x2vel - 2
+                else:
+                    x2vel = 0
+                if pygame.Rect(playerx, playery, 20, 20).left < colliderectcr.right - 5 and playery > colliderectcr.top - 5 and playery < colliderectcr.bottom + 5:
+                    playerx += 5
+                if pygame.Rect(playerx, playery, 20, 20).left < colliderectcr.right and playery > colliderectcr.top + 5 and playery < colliderectcr.bottom - 5:
                     playerx += windvel
                 if keys[pygame.K_a]:
                     playerx += playermovex
@@ -801,24 +896,6 @@ while running:
                     playery -= windvel
                 if keys[pygame.K_s]:
                     playery -= playermovey
-    for wallplatform in wallplatforms:
-        pygame.draw.rect(screen, Yellow, wallplatform)
-        # left side collision (working)
-        if wallplatform.left <= pygame.Rect(playerx, playery, 20, 20).right and wallplatform.left >= pygame.Rect(playerx, playery, 20, 20).left and playery > wallplatform.top and playery < wallplatform.bottom:
-            if xvel > windvel:
-                xvel = -xvel
-            else:
-                xvel = 0
-            if keys[pygame.K_d]:
-                playerx -= playermovex
-        # right side collision (working)
-        if wallplatform.right >= pygame.Rect(playerx, playery, 20, 20).left and wallplatform.right - 2 <= pygame.Rect(playerx, playery, 20, 20).right and playery > wallplatform.top and playery < wallplatform.bottom:
-            if x2vel < windvel:
-                x2vel = -x2vel - 2
-            else:
-                x2vel = 0
-            if keys[pygame.K_a]:
-                playerx += playermovex
     for rectangle in rectangles:
         pygame.draw.rect(screen, LightGray, pygame.Rect(rectangle))
         #rectsurface = pygame.Surface((1080, 300))
@@ -897,6 +974,12 @@ while running:
     cooldown1 += 1
     cooldown2 += 1
     cooldown3 += 1
+    cooldown4 += 1
+    if keys[pygame.K_KP_MINUS] and cooldown4 > 0:
+        cooldown4 = -300
+        playerimg = pygame.image.load('amogus.png')
+    if cooldown4 > -290:
+        playerimg = pygame.image.load('player.png')
     playerrect = pygame.Rect(playerx, playery, 20, 20)
     surface = pygame.Surface((playerrect.width, playerrect.height))
     surface.blit(playerimg, (0, 0))
